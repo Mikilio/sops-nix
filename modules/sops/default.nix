@@ -221,7 +221,7 @@ in {
     package = mkOption {
       type = types.package;
       default = (pkgs.callPackage ../.. {}).sops-install-secrets;
-      defaultText = literalExpression "(pkgs.callPackage ../.. {}).sops-install-secrets";
+      defaultText = literalMD "(pkgs.callPackage ../.. {}).sops-install-secrets";
       description = ''
         sops-install-secrets package to use.
       '';
@@ -233,7 +233,7 @@ in {
         if pkgs.stdenv.buildPlatform == pkgs.stdenv.hostPlatform
           then sops-install-secrets
           else (pkgs.pkgsBuildHost.callPackage ../.. {}).sops-install-secrets;
-      defaultText = literalExpression "config.sops.package";
+      defaultText = literalMD "config.sops.package";
 
       description = ''
         sops-install-secrets package to use when validating configuration.
